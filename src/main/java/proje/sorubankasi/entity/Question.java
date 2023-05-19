@@ -8,20 +8,22 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "question")
 public class Question {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private  long id;
 
+    // question text
+    private String text;
+
     @Column(name="option")
-    private String secenekler ;
+    private String options ;
+
+
+    private char answer;
+
+
 //sorular HashMap<soru>???
 
-@ManyToOne(cascade = CascadeType.ALL)
-    private SoruBankasi soruBankasi;
-
-    @ManyToOne
-    private Test test;
 }
