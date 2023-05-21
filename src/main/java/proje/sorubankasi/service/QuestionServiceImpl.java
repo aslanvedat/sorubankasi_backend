@@ -6,6 +6,9 @@ import proje.sorubankasi.dto.request.QuestionRequestDTO;
 import proje.sorubankasi.entity.Question;
 import proje.sorubankasi.repostory.QuestionRepostory;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class QuestionServiceImpl implements QuestionService{
 
@@ -26,5 +29,17 @@ public class QuestionServiceImpl implements QuestionService{
 
 
         return questionRepostory.save(question);
+    }
+
+
+
+    @Override
+    public Question deleteById(long questions_id) {
+       Optional<Question>theQuestion=questionRepostory.findById(questions_id);
+        if(!theQuestion.isPresent()){
+            throw new RuntimeException("employee id not found:"+questions_id);
+        }
+        questionRepostory.deleteById(questions_id);
+       return theQuestion.get();
     }
 }

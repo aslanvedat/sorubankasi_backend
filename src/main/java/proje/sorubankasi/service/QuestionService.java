@@ -7,4 +7,6 @@ import proje.sorubankasi.entity.Question;
 
 public interface QuestionService {
     Question saveQuestion(QuestionRequestDTO requestDTO);
+
+   Question deleteById(long questions_id);
 }
