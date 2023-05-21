@@ -37,9 +37,26 @@ public class QuestionServiceImpl implements QuestionService{
     public Question deleteById(long questions_id) {
        Optional<Question>theQuestion=questionRepostory.findById(questions_id);
         if(!theQuestion.isPresent()){
-            throw new RuntimeException("employee id not found:"+questions_id);
+            throw new RuntimeException("question not found:"+questions_id);
         }
         questionRepostory.deleteById(questions_id);
        return theQuestion.get();
+    }
+
+    @Override
+    public Question update(long id, QuestionRequestDTO requestDTO) {
+        Optional<Question>updateQuestion=questionRepostory.findById(id);
+        if(!updateQuestion.isPresent()){
+            throw new RuntimeException("question  not found:"+id);
+        }
+
+        Question question = new Question();
+
+        question.setText(requestDTO.getText());
+        question.setOptions(requestDTO.getOptions());
+        question.setAnswer(requestDTO.getAnswer());
+        question.setId(id);
+
+        return questionRepostory.save(question);
     }
 }

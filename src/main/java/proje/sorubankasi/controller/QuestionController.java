@@ -24,15 +24,13 @@ public class QuestionController {
         return new ResponseEntity<Question>(savedQuestion, HttpStatus.CREATED);
     }
 
-    @PutMapping("/")
-    public ResponseEntity<Question> update(@RequestBody QuestionRequestDTO input){
-        var updateQuestion = questionService.saveQuestion(input);
+    @PutMapping("/{questions_id}")
+    public ResponseEntity<Question> update(@PathVariable long questions_id,@RequestBody QuestionRequestDTO input){
+        var updateQuestion = questionService.update(questions_id,input);
         return new ResponseEntity<>(updateQuestion, HttpStatus.OK);
     }
-    //Question ve return kısmında değişiklikler olabilir
 
-
-
+    
     @DeleteMapping("/{questions_id}")
     public ResponseEntity<Question> deleteQuestion(@PathVariable long questions_id){
         var result=questionService.deleteById(questions_id);
