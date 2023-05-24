@@ -6,5 +6,5 @@ import proje.sorubankasi.entity.Question;
 
 @Repository
 public interface QuestionRepostory extends JpaRepository<Question,Long> {
-//long taki 'L' neden buyuk harfle yaziliyor
+
 }
