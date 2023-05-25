@@ -39,20 +39,13 @@ public class QuestionController {
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-//    @GetMapping
-//    public ResponseEntity<Question>checkAnswer(@PathVariable long id,@PathVariable char choice) {
-//var result =questionService.checkAnswer(id,choice);
-//
-//return new ResponseEntity<>(result,HttpStatus.OK);
-//}
 
-
+    //Buranin basina hangi Mapping gelecegine bak!!
     public ResponseEntity<Map<Long, Boolean>> checkAnswer(@PathVariable long id, @PathVariable char choice) {
         var result = questionService.checkAnswer(id, choice);
 
 
         return new ResponseEntity<Map<Long, Boolean>>(result, HttpStatus.OK);//normlade bu sekilde olmasi lazim ama kiziyor alttaki gibi olmasi mi gerekiyor??
-        //  return new ResponseEntity<Map<Long,Boolean>>((Map<Long, Boolean>) result,HttpStatus.OK);
 
     }
 }

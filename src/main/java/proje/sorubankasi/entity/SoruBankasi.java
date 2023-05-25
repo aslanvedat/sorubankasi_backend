@@ -12,12 +12,16 @@ public class SoruBankasi {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private  Long id;
+    private Long id;
 
     @Column(name = "sorubankasiName")
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Question> questions;
+    private List<Test> tests;
+
+    //alttaki kullanim sorulari direk aldigimiz
+    // sablon icindi ama degistirdik artik  testler alinacak
+    //private List<Question> questions;
 
 }
