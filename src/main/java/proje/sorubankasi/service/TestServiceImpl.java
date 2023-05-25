@@ -1,51 +1,64 @@
 package proje.sorubankasi.service;
 
+import org.springframework.stereotype.Service;
 import proje.sorubankasi.dto.request.TestRequestDTO;
 import proje.sorubankasi.entity.Test;
 import proje.sorubankasi.repostory.TestRepostory;
 
 import java.util.Optional;
 
-
+@Service
 public class TestServiceImpl implements TestService {
     private final TestRepostory testRepostory;
 
-    public TestServiceImpl(TestRepostory testRepostory) {
+    // Servisler ihtiyac halinde bir birlerini kullanabilirler
+    private final QuestionService questionService;
+
+    public TestServiceImpl(TestRepostory testRepostory, QuestionService questionService) {
         this.testRepostory = testRepostory;
+        this.questionService = questionService;
+    }
+
+    @Override
+    public Test findById(long id) {
+
+        Optional<Test> testOptional = testRepostory.findById(id);
+        return testOptional.orElseThrow(() -> new RuntimeException("Test is not found!"));
     }
 
     @Override
     public Test saveTest(TestRequestDTO testRequestDTO) {
         Test test = new Test();
         test.setName(testRequestDTO.getName());
-        test.setQuestions(testRequestDTO.getQuestions());
         return testRepostory.save(test);
     }
 
 
     @Override
     public Test updateTest(long test_id, TestRequestDTO testRequestDTO) {
-        Optional<Test> updateTest=testRepostory.findById(test_id);
-        if (!updateTest.isPresent()){
-            throw new RuntimeException("test not found:"+test_id);
-        }
-        Test test=new Test();
+        var test = findById(test_id);
         test.setName(testRequestDTO.getName());
-        test.setQuestions(testRequestDTO.getQuestions());//burasi degisebilir?
 
         return testRepostory.save(test);
     }
+
     @Override
     public Test deleteById(long test_id) {
-        Optional<Test>theTest=testRepostory.findById(test_id);
-        if(!theTest.isPresent())
-        {
+        var test = findById(test_id);
+        testRepostory.delete(test);
+        return test;
 
-            throw new RuntimeException("test not found:"+test_id);
-        }
-        testRepostory.deleteById(test_id);
-        return theTest.get();
+    }
 
+    @Override
+    public Test addQuestion(long testId, long questionId) {
+
+        var test = findById(testId); // testi bul
+        var question = questionService.findById(questionId); // question'i bul
+
+        test.getQuestions().add(question); // test'e soru ekle
+
+        return testRepostory.save(test); // veri tabanina kaydet ve don
     }
 
 }

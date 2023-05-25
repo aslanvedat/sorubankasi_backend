@@ -10,14 +10,14 @@ import java.util.List;
 @Table(name = "test")
 public class Test {
 
-@Id
-@GeneratedValue(strategy = GenerationType.SEQUENCE)//sequence yerine ıdentity de olabilir??
-private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)//sequence yerine ıdentity de olabilir??
+    private long id;
 
-@Column(name ="testName")
-private String name;
+    @Column(name = "testName")
+    private String name;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Question> questions ;
+    private List<Question> questions;
 
 }

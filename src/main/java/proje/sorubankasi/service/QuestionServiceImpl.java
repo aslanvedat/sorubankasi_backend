@@ -20,6 +20,15 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public Question findById(long id) {
+
+        Optional<Question> questionOptional = questionRepostory.findById(id);
+
+        return questionOptional.orElseThrow(()->new RuntimeException("Question is not found!"));
+
+    }
+
+    @Override
     public Question saveQuestion(QuestionRequestDTO requestDTO) {
         Question question = new Question();
         question.setText(requestDTO.getText());
