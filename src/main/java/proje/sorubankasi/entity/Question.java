@@ -3,8 +3,6 @@ package proje.sorubankasi.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.HashMap;
-import java.util.List;
 
 @Data
 @Entity
@@ -24,6 +22,6 @@ public class Question {
     private char answer;
 
 
-//sorular HashMap<soru>???
+
 
 }

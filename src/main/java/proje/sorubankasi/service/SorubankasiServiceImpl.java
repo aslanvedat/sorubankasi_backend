@@ -11,8 +11,11 @@ import java.util.Optional;
 public class SorubankasiServiceImpl implements SorubankasiService {
     private final SorubankasiRepostory sorubankasiRepostory;
 
-    public SorubankasiServiceImpl(SorubankasiRepostory sorubankasiRepostory) {
+    private final TestService testService;
+
+    public SorubankasiServiceImpl(SorubankasiRepostory sorubankasiRepostory, TestService testService) {
         this.sorubankasiRepostory = sorubankasiRepostory;
+        this.testService = testService;
     }
 
 
@@ -34,7 +37,6 @@ public class SorubankasiServiceImpl implements SorubankasiService {
             throw new RuntimeException("sorubankasi not found:" + sorubankasi_id);
         }
         SoruBankasi soruBankasi = new SoruBankasi();
-
         soruBankasi.setName(sorubankasiRequestDTO.getName());
         soruBankasi.setTests(sorubankasiRequestDTO.getTest());
         return sorubankasiRepostory.save(soruBankasi);
@@ -50,6 +52,29 @@ public class SorubankasiServiceImpl implements SorubankasiService {
 
         sorubankasiRepostory.deleteById(sorubankasi_id);
         return deleteSorubankasi.get();
+    }
+
+    @Override
+    public SoruBankasi findById(long id) {
+        Optional<SoruBankasi>soruBankasiOptional=sorubankasiRepostory.findById(id);
+        return soruBankasiOptional.orElseThrow(()->new RuntimeException("sorubankasi not found"));
+    }
+
+    @Override
+    public SoruBankasi addTest(long sorubankasi_id, long test_id) {
+        var sorubankasi=findById(sorubankasi_id);
+        var test=testService.findById(test_id);
+        sorubankasi.getTests().add(test);
+        return sorubankasiRepostory.save(sorubankasi);
+    }
+
+
+    @Override
+    public SoruBankasi deleteTest(long sorubankasi_id, long test_id) {
+       var sorubankasi=findById(sorubankasi_id);
+       var test=testService.findById(test_id);
+       test.getQuestions().remove(test);
+       return sorubankasi;
     }
 
 

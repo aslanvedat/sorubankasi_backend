@@ -61,4 +61,14 @@ public class TestServiceImpl implements TestService {
         return testRepostory.save(test); // veri tabanina kaydet ve don
     }
 
+    @Override
+    public Test deleteQestion(Long test_id, long question_id) {
+        var test=findById(test_id);
+        var question=questionService.findById(question_id);
+        test.getQuestions().remove(question);
+
+        return test;//burasi degisebilir
+    }
+
+
 }

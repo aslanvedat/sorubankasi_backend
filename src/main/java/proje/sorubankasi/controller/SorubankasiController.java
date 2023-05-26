@@ -29,11 +29,22 @@ public class SorubankasiController {
         return new ResponseEntity<SoruBankasi>(updateSorubankasi, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{sorubankasi_id")
+    @DeleteMapping("/{sorubankasi_id}")
     public ResponseEntity<SoruBankasi> deleteSorubankasi(@PathVariable long sorubankasi_id) {
         var deleteSorubankasi = sorubankasiService.deleteById(sorubankasi_id);
         return new ResponseEntity<SoruBankasi>(deleteSorubankasi, HttpStatus.OK);
 
     }
+    @GetMapping("/{sorubankasi_id}/add_test/{test_id}")
+    public ResponseEntity<SoruBankasi>addTest(@PathVariable long sorubankasi_id,@PathVariable long test_id ){
+        var result=sorubankasiService.addTest(sorubankasi_id,test_id);
+        return new ResponseEntity<SoruBankasi>(result,HttpStatus.OK);
 
+    }
+
+    @DeleteMapping("/{sorubankasi_id}/remove_test/{test_id}")
+    public ResponseEntity<SoruBankasi>removeTest(@PathVariable long sorubankasi_id,@PathVariable long test_id){
+        var result =sorubankasiService.deleteTest(sorubankasi_id,test_id);
+        return new ResponseEntity<SoruBankasi>(result,HttpStatus.OK);
+    }
 }
