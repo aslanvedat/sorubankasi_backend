@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import proje.sorubankasi.dto.request.QuestionRequestDTO;
 import proje.sorubankasi.entity.Question;
+import proje.sorubankasi.exception.ApiRequestException;
 import proje.sorubankasi.repostory.QuestionRepostory;
 
 import java.util.Map;
@@ -24,8 +25,8 @@ public class QuestionServiceImpl implements QuestionService {
 
         Optional<Question> questionOptional = questionRepostory.findById(id);
 
-        return questionOptional.orElseThrow(()->new RuntimeException("Question is not found!"));
-        //  return questionOptional.orElseThrow(()->new ApiRequestException("question is not found"));
+        //return questionOptional.orElseThrow(()->new RuntimeException("Question is not found!"));
+          return questionOptional.orElseThrow(()->new ApiRequestException("Question is not found"));
 //bu sayfada baska yerlerde de kullanılmis
     }
 
@@ -51,10 +52,8 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public Question update(long id, QuestionRequestDTO requestDTO) {
-        Optional<Question> updateQuestion = questionRepostory.findById(id);
-        if (!updateQuestion.isPresent()) {
-            throw new RuntimeException("question  not found:" + id);
-        }
+        Question updateQuestion = findById(id);
+
 
         Question question = new Question();
 
