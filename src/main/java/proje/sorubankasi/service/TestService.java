@@ -15,5 +15,5 @@ public interface TestService {
 
     Test addQuestion(long testId, long questionId);
 
-   Test deleteQestion(Long test_id, long question_id);
+   Test deleteQuestion(Long test_id, long question_id);
 }

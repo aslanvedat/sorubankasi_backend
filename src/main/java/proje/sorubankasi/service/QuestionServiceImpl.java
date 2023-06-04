@@ -25,7 +25,8 @@ public class QuestionServiceImpl implements QuestionService {
         Optional<Question> questionOptional = questionRepostory.findById(id);
 
         return questionOptional.orElseThrow(()->new RuntimeException("Question is not found!"));
-
+        //  return questionOptional.orElseThrow(()->new ApiRequestException("question is not found"));
+//bu sayfada baska yerlerde de kullanılmis
     }
 
     @Override

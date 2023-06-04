@@ -43,7 +43,7 @@ public class TestController {
 
 @DeleteMapping("/{test_id}/remove_question/{question_id}")//getmapping de olabilir!!
     public ResponseEntity<Test>deleleQuestion(@PathVariable Long test_id,@PathVariable long question_id){
-        var result=testService.deleteQestion(test_id,question_id);
+        var result=testService.deleteQuestion(test_id,question_id);
         return new ResponseEntity<Test>(result,HttpStatus.OK);
 }
 

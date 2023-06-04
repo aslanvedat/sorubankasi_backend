@@ -58,6 +58,8 @@ public class SorubankasiServiceImpl implements SorubankasiService {
     public SoruBankasi findById(long id) {
         Optional<SoruBankasi>soruBankasiOptional=sorubankasiRepostory.findById(id);
         return soruBankasiOptional.orElseThrow(()->new RuntimeException("sorubankasi not found"));
+        //  return soruBankasiOptional.orElseThrow(()->new ApiRequestException("sorubankasi is not found"));
+
     }
 
     @Override
