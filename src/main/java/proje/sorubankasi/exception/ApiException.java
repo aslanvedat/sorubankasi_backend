@@ -11,7 +11,7 @@ public class ApiException {
     private final String mesaage;
     private final Throwable throwable;
     private final HttpStatus httpStatus;
-    private final ZonedDateTime zonedDateTime;//bu olmaya bilir!!!
+    private final ZonedDateTime zonedDateTime;
 
 
 }

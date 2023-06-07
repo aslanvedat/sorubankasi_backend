@@ -9,11 +9,13 @@ import proje.sorubankasi.exception.ApiRequestException;
 import proje.sorubankasi.repostory.UserRepostory;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private final UserRepostory repository;
+
 
     @Override
     public Collection<User> findAll() {
@@ -21,16 +23,36 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserResponseDTO save( UserRequestDTO request) {
+    public User findById(long id) {
+        Optional<User> userOptional = repository.findById(id);
+        return userOptional.orElseThrow(() -> new ApiRequestException("user is not found"));
+    }
 
-        if(repository.existsByMail(request.getMail())){
+    @Override
+    public UserResponseDTO save(UserRequestDTO request) {
+        if (repository.existsByMail(request.getMail())) {
             throw new ApiRequestException("This user already exist!");
         }
-
         var theUser = new User(request);
         var savedUser = repository.save(theUser);
-
         return new UserResponseDTO(savedUser);
+    }
+
+    @Override
+    public UserResponseDTO deleteById(long id) {
+        var user = findById(id);
+        repository.delete(user);
+        return new UserResponseDTO(user);
+    }
+
+    //user yerine userResponseDTO olabilir
+    @Override
+    public UserResponseDTO update(long user_id, UserRequestDTO request) {
+        User theUser = findById(user_id);
+        User user = new User(request);
+        user.setId(theUser.getId());
+        var updateUser = repository.save(user);
+        return new UserResponseDTO(updateUser);
     }
 
 

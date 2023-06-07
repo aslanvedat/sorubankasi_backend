@@ -3,6 +3,7 @@ package proje.sorubankasi.service;
 import org.springframework.stereotype.Service;
 import proje.sorubankasi.dto.request.SorubankasiRequestDTO;
 import proje.sorubankasi.entity.SoruBankasi;
+import proje.sorubankasi.exception.ApiRequestException;
 import proje.sorubankasi.repostory.SorubankasiRepostory;
 
 import java.util.Optional;
@@ -34,7 +35,7 @@ public class SorubankasiServiceImpl implements SorubankasiService {
     public SoruBankasi updateSorubankasi(long sorubankasi_id, SorubankasiRequestDTO sorubankasiRequestDTO) {
         Optional<SoruBankasi> updateSorubankasi = sorubankasiRepostory.findById(sorubankasi_id);
         if (!updateSorubankasi.isPresent()) {
-            throw new RuntimeException("sorubankasi not found:" + sorubankasi_id);
+            throw new ApiRequestException("sorubankasi not found:" + sorubankasi_id);
         }
         SoruBankasi soruBankasi = new SoruBankasi();
         soruBankasi.setName(sorubankasiRequestDTO.getName());
@@ -47,7 +48,7 @@ public class SorubankasiServiceImpl implements SorubankasiService {
     public SoruBankasi deleteById(long sorubankasi_id) {
         Optional<SoruBankasi> deleteSorubankasi = sorubankasiRepostory.findById(sorubankasi_id);
         if (!deleteSorubankasi.isPresent()) {
-            throw new RuntimeException("sorubankasi not found:" + sorubankasi_id);
+            throw new ApiRequestException("sorubankasi not found:" + sorubankasi_id);
         }
 
         sorubankasiRepostory.deleteById(sorubankasi_id);
@@ -57,8 +58,8 @@ public class SorubankasiServiceImpl implements SorubankasiService {
     @Override
     public SoruBankasi findById(long id) {
         Optional<SoruBankasi>soruBankasiOptional=sorubankasiRepostory.findById(id);
-        return soruBankasiOptional.orElseThrow(()->new RuntimeException("sorubankasi not found"));
-        //  return soruBankasiOptional.orElseThrow(()->new ApiRequestException("sorubankasi is not found"));
+        //return soruBankasiOptional.orElseThrow(()->new RuntimeException("sorubankasi not found"));
+          return soruBankasiOptional.orElseThrow(()->new ApiRequestException("sorubankasi is not found"));
 
     }
 

@@ -18,7 +18,7 @@ public class ApiExceptionHandler {
         ApiException apiException = new ApiException(
                 e.getMessage(),
                 e,
-                HttpStatus.BAD_REQUEST,//burda ok yerine BAD_REQUEST te gelebilir?
+                HttpStatus.BAD_REQUEST,
                 ZonedDateTime.now(ZoneId.of("Z"))
         );
         return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);

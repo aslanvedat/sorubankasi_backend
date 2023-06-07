@@ -3,6 +3,7 @@ package proje.sorubankasi.service;
 import org.springframework.stereotype.Service;
 import proje.sorubankasi.dto.request.TestRequestDTO;
 import proje.sorubankasi.entity.Test;
+import proje.sorubankasi.exception.ApiRequestException;
 import proje.sorubankasi.repostory.TestRepostory;
 
 import java.util.Optional;
@@ -23,8 +24,8 @@ public class TestServiceImpl implements TestService {
     public Test findById(long id) {
 
         Optional<Test> testOptional = testRepostory.findById(id);
-      //  return testOptional.orElseThrow(()->new ApiRequestException("test is not found"));
-        return testOptional.orElseThrow(() -> new RuntimeException("Test is not found!"));
+        return testOptional.orElseThrow(()->new ApiRequestException("test is not found"));
+      //  return testOptional.orElseThrow(() -> new RuntimeException("Test is not found!"));
     }
 
     @Override

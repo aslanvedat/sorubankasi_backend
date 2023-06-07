@@ -45,5 +45,4 @@ public class User {
         this.password = new BCryptPasswordEncoder().encode(userRequestDTO.getPassword());
     }
 
-
 }
