@@ -5,7 +5,6 @@ import proje.sorubankasi.dto.response.UserResponseDTO;
 import proje.sorubankasi.entity.User;
 
 import java.util.Collection;
-import java.util.List;
 
 public interface UserService {
     Collection<User> findAll();
@@ -14,7 +13,11 @@ public interface UserService {
 
     UserResponseDTO save(UserRequestDTO request);
 
+    User save(User user);
+
     UserResponseDTO update(long user_id, UserRequestDTO requestDTO);
 
     UserResponseDTO deleteById(long id);
+
+    boolean existByMail(String mail);
 }

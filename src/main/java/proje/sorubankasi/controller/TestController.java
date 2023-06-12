@@ -36,16 +36,16 @@ public class TestController {
     }
 
     @GetMapping("/{test_id}/add_question/{question_id}")
-    public ResponseEntity<Test> addQuestion(@PathVariable Long test_id, @PathVariable Long question_id){
-        var result = testService.addQuestion(test_id,question_id);
-        return new ResponseEntity<Test>(result,HttpStatus.OK);
+    public ResponseEntity<Test> addQuestion(@PathVariable Long test_id, @PathVariable Long question_id) {
+        var result = testService.addQuestion(test_id, question_id);
+        return new ResponseEntity<Test>(result, HttpStatus.OK);
     }
 
-@DeleteMapping("/{test_id}/remove_question/{question_id}")//getmapping de olabilir!!
-    public ResponseEntity<Test>deleleQuestion(@PathVariable Long test_id,@PathVariable long question_id){
-        var result=testService.deleteQuestion(test_id,question_id);
-        return new ResponseEntity<Test>(result,HttpStatus.OK);
-}
+    @DeleteMapping("/{test_id}/remove_question/{question_id}")//getmapping de olabilir!!
+    public ResponseEntity<Test> deleteQuestion(@PathVariable Long test_id, @PathVariable long question_id) {
+        var result = testService.deleteQuestion(test_id, question_id);
+        return new ResponseEntity<Test>(result, HttpStatus.OK);
+    }
 
 
 }

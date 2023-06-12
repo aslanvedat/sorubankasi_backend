@@ -41,7 +41,7 @@ public class QuestionController {
     }
 
 
-    @GetMapping("/check_answer")
+    @GetMapping("/check_answer/question_id/{id}/choice/{choice}")
     public ResponseEntity<Map<Long, Boolean>> checkAnswer(@PathVariable long id, @PathVariable char choice) {
         var result = questionService.checkAnswer(id, choice);
         return new ResponseEntity<Map<Long, Boolean>>(result, HttpStatus.OK);

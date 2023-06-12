@@ -34,7 +34,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         final String[] whiteList = {"/api/auth"};
 
 
-        if (authHeader == null || !authHeader.startsWith("Bearer")) {
+        if (authHeader == null || !authHeader.startsWith("Bearer") ) {
             System.out.println("token yok ");
         } else {
             String token = authHeader.substring(7);

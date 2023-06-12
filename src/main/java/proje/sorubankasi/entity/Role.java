@@ -1,7 +1,11 @@
 package proje.sorubankasi.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import java.util.Collection;
+import java.util.LinkedList;
 
 @Data
 @Entity
@@ -15,6 +19,15 @@ public class Role {
     @Column(name = "rolName")
     private String name;
 
-//@OneToMany(cascade = CascadeType.ALL)
+    public Role() {
+
+    }
+
+    public Role(String name) {
+        this.name = name;
+    }
+
+
+    //@OneToMany(cascade = CascadeType.ALL)
 ////    private List<User> users;
 }

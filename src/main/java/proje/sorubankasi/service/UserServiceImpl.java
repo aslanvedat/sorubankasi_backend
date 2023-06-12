@@ -39,10 +39,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User save(User user) {
+
+        if (repository.existsByMail(user.getMail())) {
+            throw new ApiRequestException("This user already exist!");
+        }
+        return repository.save(user);
+    }
+
+    @Override
     public UserResponseDTO deleteById(long id) {
         var user = findById(id);
         repository.delete(user);
         return new UserResponseDTO(user);
+    }
+
+    @Override
+    public boolean existByMail(String mail) {
+        return repository.existsByMail(mail);
     }
 
     //user yerine userResponseDTO olabilir
