@@ -1,5 +1,6 @@
 package proje.sorubankasi.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signup")
-    public UserResponseDTO signUp(@RequestBody UserRequestDTO request){
+    public UserResponseDTO signUp(@Valid @RequestBody UserRequestDTO request){
         return userService.save(request);
     }
 
