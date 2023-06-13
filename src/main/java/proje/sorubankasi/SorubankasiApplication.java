@@ -4,14 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import proje.sorubankasi.dto.request.UserRequestDTO;
 import proje.sorubankasi.entity.Role;
 import proje.sorubankasi.entity.User;
 import proje.sorubankasi.service.RoleService;
 import proje.sorubankasi.service.UserService;
-
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 

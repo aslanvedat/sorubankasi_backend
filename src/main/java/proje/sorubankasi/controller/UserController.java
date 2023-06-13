@@ -24,6 +24,8 @@ public class  UserController {
         return userService.findAll();
     }
 
+
+    @CrossOrigin
     @PostMapping("/")//buraya ekleme olabilir!
     public ResponseEntity<UserResponseDTO> save(@RequestBody UserRequestDTO input){//responseEntity yerine collection olabilir?
         var saveUser=userService.save(input);

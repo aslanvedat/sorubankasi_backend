@@ -35,7 +35,8 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**")
                         .permitAll()
                         .requestMatchers("/user/**").hasAuthority("SUPER_ADMIN")
-                        .requestMatchers("/question/*", "/question").hasAuthority("ADMIN")
+                        .requestMatchers("/question/*","/question",
+                                "/test/**","/sorubankasi/**").hasAuthority("ADMIN")
                         .requestMatchers("/question/check_answer/**").hasAuthority("USER")
                         .anyRequest()
                         .authenticated())
