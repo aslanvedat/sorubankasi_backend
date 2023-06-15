@@ -35,7 +35,6 @@ public class RoleServiceImpl implements RoleService{
         if(role == null || role.getName().isEmpty()){
             throw new ApiRequestException("Roles cannot be null and name cannot be empty!");
         }
-
         if(existByRoleName(role.getName())){
             throw new ApiRequestException("Role already exist!");
         }

@@ -47,5 +47,12 @@ public class TestController {
         return new ResponseEntity<Test>(result, HttpStatus.OK);
     }
 
+    //sorulari arayüze tasimak icin kullanacımız component
+    //soru ve sorubankasinda findById methoduyla olusturuldu burasida degistirilebilir!!!!
+    @GetMapping("/{test_id}")
+    public ResponseEntity<Test>viewTest(@PathVariable long test_id){
+        var result =testService.viewTest(test_id);
+        return new ResponseEntity<Test>(result,HttpStatus.OK);
+    }
 
 }

@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import proje.sorubankasi.dto.request.QuestionRequestDTO;
 import proje.sorubankasi.entity.Question;
+import proje.sorubankasi.entity.Test;
 import proje.sorubankasi.service.QuestionService;
 
 import java.util.Map;
@@ -46,6 +47,12 @@ public class QuestionController {
         var result = questionService.checkAnswer(id, choice);
         return new ResponseEntity<Map<Long, Boolean>>(result, HttpStatus.OK);
 
+    }
+//findById var baska bi method olusturma geregi duymadım
+    @GetMapping("/{question_id}")
+    public  ResponseEntity<Question>viewQuestion(@PathVariable long question_id){
+        var result=questionService.findById(question_id);
+        return new ResponseEntity<Question>(result,HttpStatus.OK);
     }
 }
 

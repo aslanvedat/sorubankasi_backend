@@ -72,5 +72,11 @@ public class TestServiceImpl implements TestService {
         return test;//burasi degisebilir
     }
 
+    @Override
+    public Test viewTest(long test_id) {
+      var test=findById(test_id);
+      return test;
+    }
+
 
 }

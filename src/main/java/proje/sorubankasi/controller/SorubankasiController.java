@@ -47,4 +47,9 @@ public class SorubankasiController {
         var result =sorubankasiService.deleteTest(sorubankasi_id,test_id);
         return new ResponseEntity<SoruBankasi>(result,HttpStatus.OK);
     }
+    @GetMapping("/{sorubankasi_id}")
+    public ResponseEntity<SoruBankasi>viewSorubankasi(@PathVariable long sorubankasi_id){
+        var result=sorubankasiService.findById(sorubankasi_id);
+        return new ResponseEntity<SoruBankasi>(result,HttpStatus.OK);
+    }
 }
