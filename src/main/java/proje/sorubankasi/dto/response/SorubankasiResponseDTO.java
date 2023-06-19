@@ -1,9 +1,11 @@
 package proje.sorubankasi.dto.response;
 
+import lombok.Data;
 import proje.sorubankasi.entity.SoruBankasi;
 
 import java.util.List;
 
+@Data
 public class SorubankasiResponseDTO {
 
 
