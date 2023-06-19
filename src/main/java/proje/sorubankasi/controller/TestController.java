@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import proje.sorubankasi.dto.request.TestRequestDTO;
+import proje.sorubankasi.dto.response.TestResponseDTO;
 import proje.sorubankasi.entity.Test;
 import proje.sorubankasi.service.TestService;
 
@@ -50,9 +51,9 @@ public class TestController {
     //sorulari arayüze tasimak icin kullanacımız component
     //soru ve sorubankasinda findById methoduyla olusturuldu burasida degistirilebilir!!!!
     @GetMapping("/{test_id}")
-    public ResponseEntity<Test>viewTest(@PathVariable long test_id){
+    public ResponseEntity<TestResponseDTO>viewTest(@PathVariable long test_id){
         var result =testService.viewTest(test_id);
-        return new ResponseEntity<Test>(result,HttpStatus.OK);
+        return new ResponseEntity<TestResponseDTO>(result,HttpStatus.OK);
     }
 
 }

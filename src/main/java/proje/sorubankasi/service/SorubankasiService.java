@@ -1,6 +1,7 @@
 package proje.sorubankasi.service;
 
 import proje.sorubankasi.dto.request.SorubankasiRequestDTO;
+import proje.sorubankasi.dto.response.SorubankasiResponseDTO;
 import proje.sorubankasi.entity.SoruBankasi;
 
 public interface SorubankasiService {
@@ -14,4 +15,5 @@ public interface SorubankasiService {
     SoruBankasi findById(long id);
 
     SoruBankasi deleteTest(long sorubankasi_id, long test_id);
+    SorubankasiResponseDTO viewSorubankasi(long sorubankasi_id);
 }

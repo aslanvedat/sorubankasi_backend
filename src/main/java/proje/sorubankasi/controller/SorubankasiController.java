@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import proje.sorubankasi.dto.request.SorubankasiRequestDTO;
+import proje.sorubankasi.dto.response.SorubankasiResponseDTO;
 import proje.sorubankasi.entity.SoruBankasi;
 import proje.sorubankasi.service.SorubankasiService;
 
@@ -48,8 +49,8 @@ public class SorubankasiController {
         return new ResponseEntity<SoruBankasi>(result,HttpStatus.OK);
     }
     @GetMapping("/{sorubankasi_id}")
-    public ResponseEntity<SoruBankasi>viewSorubankasi(@PathVariable long sorubankasi_id){
-        var result=sorubankasiService.findById(sorubankasi_id);
-        return new ResponseEntity<SoruBankasi>(result,HttpStatus.OK);
+    public ResponseEntity<SorubankasiResponseDTO>viewSorubankasi(@PathVariable long sorubankasi_id){
+        var result=sorubankasiService.viewSorubankasi(sorubankasi_id);
+        return new ResponseEntity<SorubankasiResponseDTO>(result,HttpStatus.OK);
     }
 }

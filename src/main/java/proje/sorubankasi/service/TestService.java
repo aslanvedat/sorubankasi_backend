@@ -1,6 +1,7 @@
 package proje.sorubankasi.service;
 
 import proje.sorubankasi.dto.request.TestRequestDTO;
+import proje.sorubankasi.dto.response.TestResponseDTO;
 import proje.sorubankasi.entity.Test;
 
 public interface TestService {
@@ -16,5 +17,5 @@ public interface TestService {
     Test addQuestion(long testId, long questionId);
 
    Test deleteQuestion(Long test_id, long question_id);
-   Test viewTest(long test_id);
+   TestResponseDTO viewTest(long test_id);
 }

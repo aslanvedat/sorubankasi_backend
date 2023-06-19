@@ -2,6 +2,7 @@ package proje.sorubankasi.service;
 
 import org.springframework.stereotype.Service;
 import proje.sorubankasi.dto.request.TestRequestDTO;
+import proje.sorubankasi.dto.response.TestResponseDTO;
 import proje.sorubankasi.entity.Test;
 import proje.sorubankasi.exception.ApiRequestException;
 import proje.sorubankasi.repostory.TestRepostory;
@@ -73,10 +74,11 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public Test viewTest(long test_id) {
-      var test=findById(test_id);
-      return test;
+    public TestResponseDTO viewTest(long test_id) {
+ var test=findById(test_id);
+        return new TestResponseDTO(test);
     }
+
 
 
 }

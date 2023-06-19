@@ -2,6 +2,7 @@ package proje.sorubankasi.service;
 
 import org.springframework.stereotype.Service;
 import proje.sorubankasi.dto.request.SorubankasiRequestDTO;
+import proje.sorubankasi.dto.response.SorubankasiResponseDTO;
 import proje.sorubankasi.entity.SoruBankasi;
 import proje.sorubankasi.exception.ApiRequestException;
 import proje.sorubankasi.repostory.SorubankasiRepostory;
@@ -78,6 +79,13 @@ public class SorubankasiServiceImpl implements SorubankasiService {
        var test=testService.findById(test_id);
        test.getQuestions().remove(test);
        return sorubankasi;
+    }
+
+    @Override
+    public SorubankasiResponseDTO viewSorubankasi(long sorubankasi_id) {
+        var sorubankasi=findById(sorubankasi_id);
+        return new SorubankasiResponseDTO(sorubankasi);
+
     }
 
 
