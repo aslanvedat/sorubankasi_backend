@@ -3,6 +3,9 @@ package proje.sorubankasi.service;
 import proje.sorubankasi.dto.request.TestRequestDTO;
 import proje.sorubankasi.dto.response.TestResponseDTO;
 import proje.sorubankasi.entity.Test;
+import  proje.sorubankasi.dto.request.TestAnswerRequestDTO;
+import java.util.List;
+import java.util.Map;
 
 public interface TestService {
 
@@ -18,4 +21,6 @@ public interface TestService {
 
    Test deleteQuestion(Long test_id, long question_id);
    TestResponseDTO viewTest(long test_id);
+   Map<String,Integer>denemeSonuc(TestAnswerRequestDTO requestDTO);
+
 }

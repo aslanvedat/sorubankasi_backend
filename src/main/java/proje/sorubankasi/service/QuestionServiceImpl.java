@@ -1,9 +1,13 @@
 package proje.sorubankasi.service;
+
 import org.springframework.stereotype.Service;
+import proje.sorubankasi.dto.request.AnswerRequestDTO;
 import proje.sorubankasi.dto.request.QuestionRequestDTO;
 import proje.sorubankasi.entity.Question;
 import proje.sorubankasi.exception.ApiRequestException;
 import proje.sorubankasi.repostory.QuestionRepostory;
+
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -20,8 +24,7 @@ public class QuestionServiceImpl implements QuestionService {
     public Question findById(long id) {
 
         Optional<Question> questionOptional = questionRepostory.findById(id);
-        //return questionOptional.orElseThrow(()->new RuntimeException("Question is not found!"));
-          return questionOptional.orElseThrow(()->new ApiRequestException("Question is not found"));
+        return questionOptional.orElseThrow(() -> new ApiRequestException("Question is not found"));
     }
 
     @Override
@@ -70,6 +73,21 @@ public class QuestionServiceImpl implements QuestionService {
 
     }
 
+    @Override
+    public int checkAnswers(List<AnswerRequestDTO> answers) {
+        int result = 0;
+        boolean flac = false;
+        Optional<Question> veriableQuestion;
 
 
+        for (int i = 0; i < 10; i++) {
+            //   veriableQuestion = questionRepostory.findById(answers.get(i).getQuestionId());
+            flac = checkAnswer(answers.get(i).getQuestionId(), answers.get(i).getQuestionAnswer()).get(answers.get(i).getQuestionId());
+            if (flac) {
+                result++;
+            }
+
+        }
+        return result * 10;
+    }
 }

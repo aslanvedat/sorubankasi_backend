@@ -3,10 +3,14 @@ package proje.sorubankasi.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import proje.sorubankasi.dto.request.TestAnswerRequestDTO;
 import proje.sorubankasi.dto.request.TestRequestDTO;
 import proje.sorubankasi.dto.response.TestResponseDTO;
 import proje.sorubankasi.entity.Test;
 import proje.sorubankasi.service.TestService;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/test")
@@ -51,9 +55,14 @@ public class TestController {
     //sorulari arayüze tasimak icin kullanacımız component
     //soru ve sorubankasinda findById methoduyla olusturuldu burasida degistirilebilir!!!!
     @GetMapping("/{test_id}")
-    public ResponseEntity<TestResponseDTO>viewTest(@PathVariable long test_id){
-        var result =testService.viewTest(test_id);
-        return new ResponseEntity<TestResponseDTO>(result,HttpStatus.OK);
+    public ResponseEntity<TestResponseDTO> viewTest(@PathVariable long test_id) {
+        var result = testService.viewTest(test_id);
+        return new ResponseEntity<TestResponseDTO>(result, HttpStatus.OK);
     }
 
+    @GetMapping("/{test_id}/score")
+    public ResponseEntity<Map<String,Integer>> denemeSonuc(@RequestBody TestAnswerRequestDTO answerRequest) {
+        var result = testService.denemeSonuc(answerRequest);
+        return new ResponseEntity<Map<String, Integer>>(result, HttpStatus.OK);
+    }
 }

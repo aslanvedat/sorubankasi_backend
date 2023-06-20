@@ -1,12 +1,17 @@
 package proje.sorubankasi.service;
 
 import org.springframework.stereotype.Service;
+import proje.sorubankasi.dto.request.TestAnswerRequestDTO;
 import proje.sorubankasi.dto.request.TestRequestDTO;
 import proje.sorubankasi.dto.response.TestResponseDTO;
+import proje.sorubankasi.entity.Question;
 import proje.sorubankasi.entity.Test;
 import proje.sorubankasi.exception.ApiRequestException;
 import proje.sorubankasi.repostory.TestRepostory;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -25,8 +30,8 @@ public class TestServiceImpl implements TestService {
     public Test findById(long id) {
 
         Optional<Test> testOptional = testRepostory.findById(id);
-        return testOptional.orElseThrow(()->new ApiRequestException("test is not found"));
-      //  return testOptional.orElseThrow(() -> new RuntimeException("Test is not found!"));
+        return testOptional.orElseThrow(() -> new ApiRequestException("test is not found"));
+        //  return testOptional.orElseThrow(() -> new RuntimeException("Test is not found!"));
     }
 
     @Override
@@ -66,8 +71,8 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public Test deleteQuestion(Long test_id, long question_id) {
-        var test=findById(test_id);
-        var question=questionService.findById(question_id);
+        var test = findById(test_id);
+        var question = questionService.findById(question_id);
         test.getQuestions().remove(question);
 
         return test;//burasi degisebilir
@@ -75,10 +80,16 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public TestResponseDTO viewTest(long test_id) {
- var test=findById(test_id);
+        var test = findById(test_id);
         return new TestResponseDTO(test);
     }
 
+    @Override
+    public Map<String, Integer> denemeSonuc(TestAnswerRequestDTO requestDTO) {
+       var toplam= questionService.checkAnswers(requestDTO.getAnswers());
+       Map<String,Integer> result=Map.of("sonuc:",toplam);//sonuc yazisindan emin degilim?
+       return result;
+    }
 
 
 }

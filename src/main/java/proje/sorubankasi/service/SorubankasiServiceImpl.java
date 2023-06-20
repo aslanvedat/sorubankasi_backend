@@ -58,16 +58,16 @@ public class SorubankasiServiceImpl implements SorubankasiService {
 
     @Override
     public SoruBankasi findById(long id) {
-        Optional<SoruBankasi>soruBankasiOptional=sorubankasiRepostory.findById(id);
+        Optional<SoruBankasi> soruBankasiOptional = sorubankasiRepostory.findById(id);
         //return soruBankasiOptional.orElseThrow(()->new RuntimeException("sorubankasi not found"));
-          return soruBankasiOptional.orElseThrow(()->new ApiRequestException("sorubankasi is not found"));
+        return soruBankasiOptional.orElseThrow(() -> new ApiRequestException("sorubankasi is not found"));
 
     }
 
     @Override
     public SoruBankasi addTest(long sorubankasi_id, long test_id) {
-        var sorubankasi=findById(sorubankasi_id);
-        var test=testService.findById(test_id);
+        var sorubankasi = findById(sorubankasi_id);
+        var test = testService.findById(test_id);
         sorubankasi.getTests().add(test);
         return sorubankasiRepostory.save(sorubankasi);
     }
@@ -75,15 +75,15 @@ public class SorubankasiServiceImpl implements SorubankasiService {
 
     @Override
     public SoruBankasi deleteTest(long sorubankasi_id, long test_id) {
-       var sorubankasi=findById(sorubankasi_id);
-       var test=testService.findById(test_id);
-       test.getQuestions().remove(test);
-       return sorubankasi;
+        var sorubankasi = findById(sorubankasi_id);
+        var test = testService.findById(test_id);
+        test.getQuestions().remove(test);
+        return sorubankasi;
     }
 
     @Override
     public SorubankasiResponseDTO viewSorubankasi(long sorubankasi_id) {
-        var sorubankasi=findById(sorubankasi_id);
+        var sorubankasi = findById(sorubankasi_id);
         return new SorubankasiResponseDTO(sorubankasi);
 
     }
