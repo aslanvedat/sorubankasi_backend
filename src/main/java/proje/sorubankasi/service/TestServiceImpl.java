@@ -85,7 +85,7 @@ public class TestServiceImpl implements TestService {
     @Override
     public Map<String, Integer> denemeSonuc(TestAnswerRequestDTO requestDTO) {
        var toplam= questionService.checkAnswers(requestDTO.getAnswers());
-       Map<String,Integer> result=Map.of("sonuc",toplam);//sonuc yazisindan emin degilim?
+       Map<String,Integer> result=Map.of("sonuc:",toplam);//sonuc yazisindan emin degilim?
        return result;
     }
 
