@@ -55,9 +55,9 @@ public class TestController {
     //sorulari arayüze tasimak icin kullanacımız component
     //soru ve sorubankasinda findById methoduyla olusturuldu burasida degistirilebilir!!!!
     @GetMapping("/{test_id}")
-    public ResponseEntity<TestResponseDTO> viewTest(@PathVariable long test_id) {
-        var result = testService.viewTest(test_id);
-        return new ResponseEntity<TestResponseDTO>(result, HttpStatus.OK);
+    public ResponseEntity<Test> viewTest(@PathVariable long test_id) {
+        var result = testService.findById(test_id);
+        return new ResponseEntity<Test>(result, HttpStatus.OK);
     }
 
     @GetMapping("/{test_id}/score")

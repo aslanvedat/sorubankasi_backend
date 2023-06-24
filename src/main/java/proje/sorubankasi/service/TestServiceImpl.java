@@ -4,13 +4,11 @@ import org.springframework.stereotype.Service;
 import proje.sorubankasi.dto.request.TestAnswerRequestDTO;
 import proje.sorubankasi.dto.request.TestRequestDTO;
 import proje.sorubankasi.dto.response.TestResponseDTO;
-import proje.sorubankasi.entity.Question;
+
 import proje.sorubankasi.entity.Test;
 import proje.sorubankasi.exception.ApiRequestException;
 import proje.sorubankasi.repostory.TestRepostory;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 

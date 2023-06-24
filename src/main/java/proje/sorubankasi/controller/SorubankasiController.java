@@ -49,8 +49,8 @@ public class SorubankasiController {
         return new ResponseEntity<SoruBankasi>(result,HttpStatus.OK);
     }
     @GetMapping("/{sorubankasi_id}")
-    public ResponseEntity<SorubankasiResponseDTO>viewSorubankasi(@PathVariable long sorubankasi_id){
-        var result=sorubankasiService.viewSorubankasi(sorubankasi_id);
-        return new ResponseEntity<SorubankasiResponseDTO>(result,HttpStatus.OK);
+    public ResponseEntity<SoruBankasi>viewSorubankasi(@PathVariable long sorubankasi_id){
+        var result=sorubankasiService.findById(sorubankasi_id);
+        return new ResponseEntity<SoruBankasi>(result,HttpStatus.OK);
     }
 }
