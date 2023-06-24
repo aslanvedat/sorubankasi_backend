@@ -10,9 +10,9 @@ public class QuestionResponseDTO {
     private String options;
 
 public QuestionResponseDTO(Question question){
-    this.id=getId();
-    this.text=getText();
-    this.options=getOptions();
+    this.id= question.getId();
+    this.text= question.getText();
+    this.options=question.getOptions();
 }
 
 }
