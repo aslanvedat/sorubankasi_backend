@@ -60,7 +60,7 @@ public class TestController {
         return new ResponseEntity<Test>(result, HttpStatus.OK);
     }
 
-    @GetMapping("/{test_id}/score")
+    @PostMapping("/{test_id}/score")
     public ResponseEntity<Map<String,Integer>> denemeSonuc(@RequestBody TestAnswerRequestDTO answerRequest) {
         var result = testService.denemeSonuc(answerRequest);
         return new ResponseEntity<Map<String, Integer>>(result, HttpStatus.OK);
