@@ -5,11 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import proje.sorubankasi.dto.request.TestAnswerRequestDTO;
 import proje.sorubankasi.dto.request.TestRequestDTO;
-import proje.sorubankasi.dto.response.TestResponseDTO;
 import proje.sorubankasi.entity.Test;
 import proje.sorubankasi.service.TestService;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController

@@ -30,8 +30,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDTO save(UserRequestDTO request) {
+        //buraya ekleme yapidi validation için
         if (repository.existsByMail(request.getMail())) {
             throw new ApiRequestException("This user already exist!");
+        }
+        if(!request.getPassword().equals(request.getPasswordTekrar())){
+            throw  new ApiRequestException("this password can not match");
         }
         var theUser = new User(request);
         var savedUser = repository.save(theUser);

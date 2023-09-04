@@ -1,9 +1,9 @@
 package proje.sorubankasi.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import proje.sorubankasi.dto.request.UserRequestDTO;
 import proje.sorubankasi.dto.response.UserResponseDTO;
@@ -27,7 +27,7 @@ public class  UserController {
 
     @CrossOrigin
     @PostMapping("/")//buraya ekleme olabilir!
-    public ResponseEntity<UserResponseDTO> save(@RequestBody UserRequestDTO input){//responseEntity yerine collection olabilir?
+    public ResponseEntity<UserResponseDTO> save(@Valid @RequestBody UserRequestDTO input){//responseEntity yerine collection olabilir?
         var saveUser=userService.save(input);
  return new ResponseEntity<UserResponseDTO>(saveUser,HttpStatus.CREATED);
     }

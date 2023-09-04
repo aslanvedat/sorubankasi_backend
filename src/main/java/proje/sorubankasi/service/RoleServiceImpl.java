@@ -7,7 +7,6 @@ import proje.sorubankasi.exception.ApiRequestException;
 import proje.sorubankasi.repostory.RoleRepostory;
 
 import java.util.Collection;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

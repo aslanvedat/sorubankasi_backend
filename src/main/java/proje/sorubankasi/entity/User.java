@@ -28,6 +28,9 @@ public class User {
     @Column(name = "password")
     private String password;
 
+
+
+
     //roller(collection??
     @ManyToMany(cascade = {CascadeType.MERGE,CascadeType.REFRESH,CascadeType.REMOVE,CascadeType.DETACH},
             fetch = FetchType.EAGER)

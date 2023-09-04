@@ -24,10 +24,7 @@ public class SorubankasiServiceImpl implements SorubankasiService {
     @Override
     public SoruBankasi saveSorubankasi(SorubankasiRequestDTO sorubankasiRequestDTO) {
         SoruBankasi soruBankasi = new SoruBankasi();
-
         soruBankasi.setName(sorubankasiRequestDTO.getName());
-
-//test te sorularin eklnemesi gibi burayada testler eklendikten sora bazi degisiklikler yapilabilir
         soruBankasi.setTests(sorubankasiRequestDTO.getTest());
         return sorubankasiRepostory.save(soruBankasi);
     }

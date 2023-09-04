@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import proje.sorubankasi.dto.request.QuestionRequestDTO;
 import proje.sorubankasi.entity.Question;
-import proje.sorubankasi.entity.Test;
 import proje.sorubankasi.service.QuestionService;
 
 import java.util.Map;
