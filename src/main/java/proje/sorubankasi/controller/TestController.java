@@ -12,6 +12,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/test")
+
 public class TestController {
     private TestService testService;
 
@@ -63,4 +64,8 @@ public class TestController {
         var result = testService.denemeSonuc(answerRequest);
         return new ResponseEntity<Map<String, Integer>>(result, HttpStatus.OK);
     }
+
+
+
+
 }

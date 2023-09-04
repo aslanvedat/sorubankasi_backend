@@ -1,6 +1,13 @@
 package proje.sorubankasi.service;
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
+import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 import proje.sorubankasi.dto.request.TestAnswerRequestDTO;
 import proje.sorubankasi.dto.request.TestRequestDTO;
 import proje.sorubankasi.dto.response.TestResponseDTO;
@@ -13,7 +20,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
-public class TestServiceImpl implements TestService {
+public class TestServiceImpl  implements TestService  {
     private final TestRepostory testRepostory;
 
     // Servisler ihtiyac halinde bir birlerini kullanabilirler
@@ -22,6 +29,8 @@ public class TestServiceImpl implements TestService {
     public TestServiceImpl(TestRepostory testRepostory, QuestionService questionService) {
         this.testRepostory = testRepostory;
         this.questionService = questionService;
+
+
     }
 
     @Override
