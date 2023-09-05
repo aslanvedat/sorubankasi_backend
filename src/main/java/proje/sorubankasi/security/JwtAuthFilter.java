@@ -14,8 +14,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -24,20 +22,20 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JpaUserDetailService jpaUserDetailService;
     private final JwtUtils jwtUtils;
-    protected boolean shouldNotFilter(HttpServletRequest request){
-        String path=request.getRequestURI();
-        return path.startsWith("/api/sendMessage")||path.equals("/api/auth/signup");
+
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getRequestURI();
+        return  path.startsWith("/api/sendMessage") || path.equals("/api/auth/signup");
     }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
         final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        final String[] whiteList = {"/api/auth"};
 
-
-        if (authHeader == null || !authHeader.startsWith("Bearer") ) {
+        if (authHeader == null || !authHeader.startsWith("Bearer")) {
             System.out.println("token yok ");
         } else {
             String token = authHeader.substring(7);
@@ -58,7 +56,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
 
         filterChain.doFilter(request, response);
-
 
     }
 }

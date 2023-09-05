@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/auth/**","/ws/**","/api/sendMessage")
+                        .requestMatchers("/auth/**","/ws/**","/sendMessage/**")
                         .permitAll()
                         .requestMatchers("/user/**").hasAuthority("SUPER_ADMIN")
                         .requestMatchers("/question/*","/question",
