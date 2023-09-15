@@ -37,7 +37,7 @@ public class SecurityConfig {
                         .requestMatchers("/user/**").hasAuthority("SUPER_ADMIN")
                         .requestMatchers("/question/*","/question",
                                 "/test/**","/sorubankasi/**").hasAuthority("ADMIN")
-                        .requestMatchers("/question/check_answer/**").hasAuthority("USER")
+                        .requestMatchers("/question/check_answer/**","/socket").hasAuthority("USER")
                         .anyRequest()
                         .authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
