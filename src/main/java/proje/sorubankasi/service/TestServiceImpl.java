@@ -18,19 +18,20 @@ import proje.sorubankasi.repostory.TestRepostory;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
-public class TestServiceImpl  implements TestService  {
+public class TestServiceImpl implements TestService {
     private final TestRepostory testRepostory;
-
+    private final Map<String, Long> sessionMap;
     // Servisler ihtiyac halinde bir birlerini kullanabilirler
     private final QuestionService questionService;
 
-    public TestServiceImpl(TestRepostory testRepostory, QuestionService questionService) {
+    public TestServiceImpl(TestRepostory testRepostory, QuestionService questionService, Map<String,Long> sessionMap) {
         this.testRepostory = testRepostory;
         this.questionService = questionService;
-
-
+        this.sessionMap = sessionMap;
     }
 
     @Override
@@ -93,9 +94,19 @@ public class TestServiceImpl  implements TestService  {
 
     @Override
     public Map<String, Integer> denemeSonuc(TestAnswerRequestDTO requestDTO) {
-       var toplam= questionService.checkAnswers(requestDTO.getAnswers());
-       Map<String,Integer> result=Map.of("sonuc:",toplam);//sonuc yazisindan emin degilim?
-       return result;
+        var toplam = questionService.checkAnswers(requestDTO.getAnswers());
+        Map<String, Integer> result = Map.of("sonuc:", toplam);//sonuc yazisindan emin degilim?
+        return result;
+    }
+
+    @Override
+    public Map<String,String> createTestSession(long testId) {
+        var test = findById(testId);
+        var sure = (long) test.getQuestions().size()*60;//60 ile carp sure bul
+        var sessionId = UUID.randomUUID().toString().replace("-","");
+        sessionMap.putIfAbsent(sessionId, sure);
+
+        return Map.of("SessionId",sessionId);
     }
 
 

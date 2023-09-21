@@ -66,6 +66,9 @@ public class TestController {
     }
 
 
-
-
+@GetMapping("/start-session/{sessionId}")
+public ResponseEntity<?> testUrl(@PathVariable long testId){
+        var result = testService.createTestSession(testId);
+        return new ResponseEntity<>(result,HttpStatus.OK);
+}
 }

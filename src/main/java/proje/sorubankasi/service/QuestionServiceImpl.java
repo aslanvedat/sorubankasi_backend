@@ -79,7 +79,6 @@ public class QuestionServiceImpl implements QuestionService {
         boolean flac = false;
         Optional<Question> veriableQuestion;
 
-
         for (int i = 0; i < answers.size(); i++) {
             //   veriableQuestion = questionRepostory.findById(answers.get(i).getQuestionId());
             flac = checkAnswer(answers.get(i).getQuestionId(), answers.get(i).getQuestionAnswer()).get(answers.get(i).getQuestionId());
