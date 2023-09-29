@@ -34,7 +34,7 @@ public class WebSocketThread extends Thread {
 
         for (int i = 0; i <= sure; i++) {
             String result = String.valueOf(sure - i);
-            template.convertAndSend("/topic/messages/" + token, ":" + result);
+            template.convertAndSend("/topic/messages/" + token, "" + result);
             try {
                 sleep(1000);
             } catch (InterruptedException e) {
