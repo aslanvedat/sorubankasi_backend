@@ -68,12 +68,9 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public Test addQuestion(long testId, long questionId) {
-
         var test = findById(testId); // testi bul
         var question = questionService.findById(questionId); // question'i bul
-
         test.getQuestions().add(question); // test'e soru ekle
-
         return testRepostory.save(test); // veri tabanina kaydet ve don
     }
 
@@ -82,8 +79,7 @@ public class TestServiceImpl implements TestService {
         var test = findById(test_id);
         var question = questionService.findById(question_id);
         test.getQuestions().remove(question);
-
-        return test;//burasi degisebilir
+     return  testRepostory.save(test);
     }
 
     @Override

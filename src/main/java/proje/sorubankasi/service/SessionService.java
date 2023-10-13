@@ -23,21 +23,8 @@ public class SessionService {
         this.sessionTimeMap = sessionTimeMap;
 
     }
-
-
     public void startTimer(String token,String sessionId) {
-       /* if (token == null || token.isEmpty()) {
-            throw new ApiRequestException("SessionId cannot be empty!");
-        }
-        if (sessionTimeMap.containsKey(token)) {
-            //long time = sessionTimeMap.get(sessionId);
-
-        } else {
-            LOGGER.warn("Session not found for {}", sessionId);
-            throw new ApiRequestException("Session not found");
-        }*/
-
-        long time = 20;
+        long time = 10;
         WebSocketThread webSocketThread = new WebSocketThread(template, time, token, sessionId, sessionMap);
         webSocketThread.start();
     }

@@ -2,11 +2,6 @@ package proje.sorubankasi.configuration.thread;
 
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.socket.WebSocketSession;
-import proje.sorubankasi.dto.request.AnswerRequestDTO;
-import proje.sorubankasi.dto.request.TestAnswerRequestDTO;
-import proje.sorubankasi.entity.Question;
-import proje.sorubankasi.entity.Test;
-import proje.sorubankasi.service.QuestionService;
 
 import java.io.IOException;
 import java.util.Map;
@@ -18,20 +13,14 @@ public class WebSocketThread extends Thread {
     private final String token;
     private final String sessionId;
     private final Map<String, WebSocketSession> sessionMap;
-
-
     public WebSocketThread(SimpMessagingTemplate template, long sure, String token, String sessionId, Map<String, WebSocketSession> sessionMap) {
         this.template = template;
         this.sure = sure;
         this.token = token;
         this.sessionId = sessionId;
         this.sessionMap = sessionMap;
-
     }
-
     public void run() {
-
-
         for (int i = 0; i <= sure; i++) {
             String result = String.valueOf(sure - i);
             template.convertAndSend("/topic/messages/" + token, "" + result);
@@ -45,7 +34,6 @@ public class WebSocketThread extends Thread {
         var session = sessionMap.get(sessionId);
         if(session != null && session.isOpen()){
             try {
-
                 session.close();
                 sessionMap.remove(sessionId);
             } catch (IOException e) {
